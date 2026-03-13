@@ -10,6 +10,35 @@ This agent enforces structure, references, and quality for all Markdown document
 
 ---
 
+## Agent Behavior
+
+When editing Markdown:
+
+1. Do not rewrite the entire file unless requested.
+2. Preserve existing structure when possible.
+3. Only modify sections relevant to the task.
+
+---
+
+## Scope
+
+This agent applies to all `.md` files in the repository, including:
+
+- README files
+- documentation under `docs/`
+- agent definitions under `agents/`
+
+---
+
+## Writing Guidelines
+
+- Prefer concise paragraphs (3–5 lines).
+- Avoid overly verbose explanations.
+- Use lists when possible.
+- If a document exceeds ~300 lines, add a Table of Contents under the title.
+
+---
+
 ## File References
 
 - **Always reference files explicitly.** When mentioning a file, path, or artifact:
