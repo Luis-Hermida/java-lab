@@ -21,7 +21,6 @@ public class Main {
 
     public static void main(String[] args) {
         var alice = new Person("Alice", 30);
-        var bob = new Person("Bob", 25);
 
         // Accessors: name() and age() — no getX() boilerplate.
         System.out.println(alice.name() + " is " + alice.age());
