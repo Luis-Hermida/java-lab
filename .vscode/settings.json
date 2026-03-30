@@ -1,0 +1,6 @@
+{
+    "java.project.sourcePaths": [
+        "workbench/records-example",
+        "spring/demo/src/main/java/com/spring/demo/demo"
+    ]
+}
