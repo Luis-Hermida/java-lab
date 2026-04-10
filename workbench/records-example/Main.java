@@ -30,3 +30,4 @@ public class Main {
         System.out.println("Same as copy: " + alice.equals(new Person("Alice", 30)));
     }
 }
+                                
