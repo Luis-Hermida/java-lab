@@ -1,5 +1,13 @@
 # Java Records — Learning Example
 
+## Layout
+
+```text
+workbench/records-example/
+├── README.md
+└── Main.java             # Runnable demo (javac / java from this folder)
+```
+
 ## Description
 
 **Java Records** (finalized in Java 16, JEP 395) are a way to model **immutable data** with minimal boilerplate. Instead of writing a class with private final fields, a constructor, getters, `equals`, `hashCode`, and `toString`, you declare the components once; the compiler generates the rest.

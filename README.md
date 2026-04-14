@@ -2,18 +2,31 @@
 
 ## Description
 
-This repository hosts multiple Java-based projects organized as a monorepo.
+This repository hosts Java learning material and apps arranged as a single workspace. Each major area keeps its own build (Maven or plain `javac`) where appropriate.
 
-- **`apis/`**: Backend/API services. Each subfolder here can be a separate Java service.
-- **`workbench/`**: Experimental/playground projects for learning.
-- **`shared-utils/`**: Reusable Java libraries and packages shared across `apis/` and `workbench/` projects.
-- **`agents/`**: Markdown-based agent definitions, documentation, and automation guides.
+## Layout
 
-Each Java app or library will typically live in its own subdirectory with its own build configuration (e.g. Gradle or Maven). We can layer on shared build logic and conventions as the monorepo evolves.
+```text
+java-lab/
+├── .vscode/                 # Workspace / editor settings (e.g. Java tooling)
+├── agents/                  # Markdown guides for docs and workbench conventions
+├── spring/                  # Spring-related exercises
+│   ├── 1-spring-boot-setup/   # Spring Boot sample app (Maven + wrapper)
+│   └── 2-pending/             # Reserved for the next exercise (empty)
+├── workbench/               # Small experiments and language playbooks
+│   └── records-example/     # Runnable Java records example
+├── .gitattributes
+└── README.md
+```
+
+## Areas
+
+- **`agents/`** — Markdown agent rules: how to write docs and workbench READMEs.
+- **`spring/`** — Spring tutorials; each numbered folder is a self-contained project where present.
+- **`workbench/`** — Experiments and PoCs; add one subfolder per topic with its own README and build.
 
 ## References
 
-- **APIs**: `"apis/README.md"`
-- **Workbench**: `"workbench/README.md"`
-- **Shared utils**: `"shared-utils/README.md"`
-- **Agents**: `"agents/README.md"`
+- **Agents:** [`agents/README.md`](agents/README.md)
+- **Workbench:** [`workbench/README.md`](workbench/README.md)
+- **Spring Boot sample:** [`spring/1-spring-boot-setup/`](spring/1-spring-boot-setup/) (Maven; use `mvnw` / `mvnw.cmd` locally)
