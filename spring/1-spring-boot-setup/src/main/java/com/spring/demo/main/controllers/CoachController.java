@@ -1,8 +1,10 @@
-package com.spring.demo.demo.rest.coach;
+package com.spring.demo.main.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.spring.demo.coach.Coach;
 
 @RestController
 public class CoachController {

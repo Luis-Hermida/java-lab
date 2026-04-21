@@ -1,10 +1,10 @@
-package com.spring.demo.demo.rest;
+package com.spring.demo.main.rest;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.demo.demo.playground.LombokData;
+import com.spring.demo.main.dto.SampleLombokDTO;
 
 @RestController
 public class HelloWorldController {
@@ -17,7 +17,7 @@ public class HelloWorldController {
     // expose '/' that return "Hello World"
     @GetMapping("/")
     public String hello() {
-        LombokData lombok = new LombokData();
+        SampleLombokDTO lombok = new SampleLombokDTO();
         lombok.setMessage("Lombok is working!!!!");
         return lombok.getMessage();
     }

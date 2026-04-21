@@ -1,4 +1,4 @@
-package com.spring.demo.demo.rest.coach;
+package com.spring.demo.coach;
 
 public interface Coach {
 

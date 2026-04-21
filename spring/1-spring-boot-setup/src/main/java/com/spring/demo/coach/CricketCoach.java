@@ -1,4 +1,4 @@
-package com.spring.demo.demo.rest.coach;
+package com.spring.demo.coach;
 
 import org.springframework.stereotype.Component;
 
