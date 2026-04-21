@@ -13,6 +13,7 @@ public class CoachContructorController {
     private Coach controlledCoach;
 
     // define a constructor for dependency injection
+    // using default Coach bean, which is FootBallCoach because of @Primary
     @Autowired
     public CoachContructorController(Coach coach) {
         this.controlledCoach = coach;
