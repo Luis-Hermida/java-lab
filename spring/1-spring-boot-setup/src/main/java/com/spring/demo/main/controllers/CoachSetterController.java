@@ -7,16 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.demo.coach.Coach;
 
 @RestController
-public class CoachController {
+public class CoachSetterController {
 
     // define a private field for the dependency
     private Coach controlledCoach;
-
-    // define a constructor for dependency injection
-    // @Autowired
-    // public CoachController(Coach coach) {
-    // this.controlledCoach = coach;
-    // }
 
     // define a setter method for dependency injection
     // we can use any name for the method, but it is a good practice to setCoach()
@@ -26,7 +20,7 @@ public class CoachController {
         this.controlledCoach = coach;
     }
 
-    @GetMapping("/coach")
+    @GetMapping("/coachSetter")
     public String getDailyWorkout() {
         return controlledCoach.getDailyWorkout();
     }
