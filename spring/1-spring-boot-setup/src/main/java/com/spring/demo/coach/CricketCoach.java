@@ -7,6 +7,6 @@ public class CricketCoach implements Coach {
 
     @Override
     public String getDailyWorkout() {
-        return "Practice cricket for 2 hours";
+        return "Practice cricket for 3 >:( hours";
     }
 }

@@ -13,8 +13,16 @@ public class CoachController {
     private Coach controlledCoach;
 
     // define a constructor for dependency injection
+    // @Autowired
+    // public CoachController(Coach coach) {
+    // this.controlledCoach = coach;
+    // }
+
+    // define a setter method for dependency injection
+    // we can use any name for the method, but it is a good practice to setCoach()
+    // setCoach() is fine, but setCoachLaLaLaLa() is more fun :D
     @Autowired
-    public CoachController(Coach coach) {
+    public void setCoachLaLaLaLa(Coach coach) {
         this.controlledCoach = coach;
     }
 
