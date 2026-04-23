@@ -5,14 +5,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Lazy
-public class CricketCoach implements Coach {
+public class GolfCoach implements Coach {
 
-    public CricketCoach() {
+    public GolfCoach() {
         System.out.println("Constructor info: " + getClass().getSimpleName());
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Practice cricket for 3 >:( hours";
+        return "Practice golf for 2 hours";
     }
 }
