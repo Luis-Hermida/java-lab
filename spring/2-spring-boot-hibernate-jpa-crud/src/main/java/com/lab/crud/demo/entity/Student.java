@@ -33,6 +33,10 @@ public class Student {
         this.email = email;
     }
 
+    // No-arg constructor required by Hibernate
+    public Student() {
+    }
+
     // Define getter/setter methods
     public int getId() {
         return id;
