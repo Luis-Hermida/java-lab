@@ -1,11 +1,14 @@
 package com.lab.crud.demo.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lab.crud.demo.entity.Student;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -33,4 +36,28 @@ public class StudentDAOImpl implements StudentDAO {
         return entityManager.find(Student.class, id);
     }
 
+    // Implement findAll method
+    @Override
+    public List<Student> findAll() {
+        // Create query
+        TypedQuery<Student> query = entityManager.createQuery("FROM Student order by lastName asc", Student.class);
+
+        // Return query results
+        return query.getResultList();
+    }
+
+    // Implement findByLastName method
+    @Override
+    public List<Student> findByLastName(String lastName) {
+        // Create query
+        TypedQuery<Student> query = entityManager.createQuery(
+                "FROM Student WHERE lastName=:theData",
+                Student.class);
+
+        // Set query parameters
+        query.setParameter("theData", lastName);
+
+        // Return query results
+        return query.getResultList();
+    }
 }

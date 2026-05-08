@@ -1,5 +1,7 @@
 package com.lab.crud.demo;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +22,9 @@ public class Application {
 		return args -> {
 			// createStudent(studentDAO);
 			// createMultipleStudents(studentDAO);
-			findStudentById(studentDAO, 7);
+			// findStudentById(studentDAO, 7);
+			// queryForAllStudents(studentDAO);
+			queryFindStudentsByLastName(studentDAO, "Doe");
 		};
 	}
 
@@ -63,6 +67,22 @@ public class Application {
 			System.out.println("No student found with id: " + id);
 		} else {
 			System.out.println("Found student: " + tempStudent);
+		}
+	}
+
+	private void queryForAllStudents(StudentDAO studentDAO) {
+		List<Student> students = studentDAO.findAll();
+
+		for (Student tempStudent : students) {
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void queryFindStudentsByLastName(StudentDAO studentDAO, String lastName) {
+		List<Student> students = studentDAO.findByLastName(lastName);
+
+		for (Student tempStudent : students) {
+			System.out.println(tempStudent);
 		}
 	}
 }
