@@ -25,7 +25,9 @@ public class Application {
 			// findStudentById(studentDAO, 7);
 			// queryForAllStudents(studentDAO);
 			// queryFindStudentsByLastName(studentDAO, "Doe");
-			updateStudent(studentDAO, 1, "Pepe");
+			// updateStudent(studentDAO, 1, "Pepe");
+			// deleteStudent(studentDAO, 1);
+			deleteAllStudents(studentDAO);
 		};
 	}
 
@@ -99,5 +101,14 @@ public class Application {
 
 		// Display updated student entity
 		System.out.println(tempStudent);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO, Integer id) {
+		studentDAO.delete(id);
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		int rowsDeleted = studentDAO.deleteAll();
+		System.out.println("Deleted " + rowsDeleted + " rows from student table");
 	}
 }
