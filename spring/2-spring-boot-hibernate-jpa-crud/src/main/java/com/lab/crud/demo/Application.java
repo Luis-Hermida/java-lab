@@ -24,7 +24,8 @@ public class Application {
 			// createMultipleStudents(studentDAO);
 			// findStudentById(studentDAO, 7);
 			// queryForAllStudents(studentDAO);
-			queryFindStudentsByLastName(studentDAO, "Doe");
+			// queryFindStudentsByLastName(studentDAO, "Doe");
+			updateStudent(studentDAO, 1, "Pepe");
 		};
 	}
 
@@ -84,5 +85,19 @@ public class Application {
 		for (Student tempStudent : students) {
 			System.out.println(tempStudent);
 		}
+	}
+
+	private void updateStudent(StudentDAO studentDAO, Integer id, String updatedFirstName) {
+		// Retrieve student by id
+		Student tempStudent = studentDAO.findById(id);
+
+		// Change first name
+		tempStudent.setFirstName(updatedFirstName);
+
+		// Update student entity
+		studentDAO.update(tempStudent);
+
+		// Display updated student entity
+		System.out.println(tempStudent);
 	}
 }
