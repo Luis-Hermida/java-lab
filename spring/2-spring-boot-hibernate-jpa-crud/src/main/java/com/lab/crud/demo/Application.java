@@ -21,13 +21,13 @@ public class Application {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return args -> {
 			// createStudent(studentDAO);
-			// createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 			// findStudentById(studentDAO, 7);
 			// queryForAllStudents(studentDAO);
 			// queryFindStudentsByLastName(studentDAO, "Doe");
 			// updateStudent(studentDAO, 1, "Pepe");
 			// deleteStudent(studentDAO, 1);
-			deleteAllStudents(studentDAO);
+			// deleteAllStudents(studentDAO);
 		};
 	}
 
