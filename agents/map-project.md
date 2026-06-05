@@ -1,6 +1,6 @@
 ---
 name: map-project
-description: Explore a folder or project and produce a clear, learning-oriented structure guide. Use when the user asks to map, outline, document, or explain how a project is organized, what each part does, or where to start reading.
+description: Explore a folder or project and write project_specification.md — a clear, learning-oriented structure guide. Use when the user asks to map, outline, document, or explain how a project is organized, what each part does, or where to start reading.
 ---
 
 # Project Map Agent — Structure Guides for Learners
@@ -33,7 +33,7 @@ Invoke this agent when the user:
 
 - asks to **map**, **outline**, **document**, or **explain the structure** of a folder or project
 - says "what's in this project?", "where do I start?", or "create a structure guide"
-- adds a new learning module and needs a **PROJECT.md** or an expanded **README** layout section
+- adds a new learning module and needs **`project_specification.md`** or an expanded **README** layout section
 - wants to understand `"spring/"`, `"workbench/"`, or any subfolder they reference
 
 ---
@@ -61,11 +61,14 @@ This agent may map any area the user specifies, for example:
 
 ### Where to write
 
-| Situation | Preferred output |
-|-----------|------------------|
-| User asked for a standalone structure doc | `"<project>/PROJECT.md"` or `"<project>/STRUCTURE.md"` |
-| Folder already has `"README.md"` with a thin Layout section | Expand **Layout** and add **Learning path** / **Key files** sections in place |
-| User only wanted chat output | Return the guide in the response; offer to save as `"PROJECT.md"` |
+**Always write the output file as `"<project>/project_specification.md"`** at the root of the mapped folder.
+
+| Situation | Action |
+|-----------|--------|
+| Default | Create or update `"<project>/project_specification.md"` |
+| Folder already has `"README.md"` with a thin Layout section | Still write `"project_specification.md"`; add a one-line link from `"README.md"` to it if useful |
+| User only wanted chat output | Return the guide in the response; offer to save as `"project_specification.md"` |
+| Legacy files exist (`"PROJECT.md"`, `"STRUCTURE.md"`) | Write `"project_specification.md"`; note the legacy file in **Notes / Caveats** or replace if the user asked to migrate |
 
 Follow **`agents/documents.md`**: quoted paths, level-2 sections, code blocks with language tags.
 
@@ -243,6 +246,7 @@ Adapt the map to what you find:
 
 - **`agents/documents.md`** — structure, quotes, sections, checklist for all `.md` output
 - **`agents/workbench.md`** — if the project is under `"workbench/"`, align map with substantial README expectations
+- **`agents/api-deep-dive.md`** — after mapping, user may request `"api_specification.md"` for the HTTP layer
 - **`agents/comment.md`** — after mapping, user may ask for inline code comments on key files identified in the learning path
 - **`agents/grill.md`** — if structure reveals design gaps, user may stress-test decisions separately; do not turn a map into an interview unless asked
 
@@ -252,6 +256,7 @@ Adapt the map to what you find:
 
 Before finishing:
 
+- [ ] Output saved as `"<project>/project_specification.md"`
 - [ ] Explored the codebase; no invented files or features
 - [ ] **Description** states purpose and prerequisites
 - [ ] **Layout** is an annotated tree (not a raw dump); noise folders collapsed
@@ -271,6 +276,7 @@ Before finishing:
 - Workbench documentation depth: `"agents/workbench.md"`
 - Code commenting (follow-up): `"agents/comment.md"`
 - Agents index: `"agents/README.md"`
-- Example API-heavy project notes: `"spring/1-spring-boot-setup/src/main/project.md"`
+- Example structure spec: `"spring/1-spring-boot-setup/project_specification.md"`
+- Example API spec (pair with map-project): `"spring/1-spring-boot-setup/api_specification.md"`
 - Example experiment README: `"workbench/records-example/README.md"`
 - Repo overview: `"README.md"`
