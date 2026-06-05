@@ -7,17 +7,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// JPA entity — maps this class to the student table; JPQL uses "Student", not "student".
 @Entity
 @Table(name = "student")
 public class Student {
 
-    // Define fields
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL AUTO_INCREMENT assigns id after insert.
     @Column(name = "id")
     private int id;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name") // Java camelCase field → snake_case DB column.
     private String firstName;
 
     @Column(name = "last_name")
@@ -26,18 +26,16 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    // Define constructors
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    // No-arg constructor required by Hibernate
+    // Hibernate needs a no-arg constructor to instantiate entities when loading from the database.
     public Student() {
     }
 
-    // Define getter/setter methods
     public int getId() {
         return id;
     }
@@ -70,7 +68,6 @@ public class Student {
         this.email = email;
     }
 
-    // Define toString() method
     @Override
     public String toString() {
         return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";

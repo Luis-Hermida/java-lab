@@ -11,71 +11,60 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
+// Custom DAO on EntityManager — alternative to Spring Data JpaRepository for learning JPA internals.
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
-    // Define field for entity manager
     private EntityManager entityManager;
 
-    // Set up constructor injection
+    // Spring Boot auto-configures EntityManager for JPA — injected via constructor.
     @Autowired
     public StudentDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    // Implement save method
     @Override
-    @Transactional
+    @Transactional // Write ops need a transaction; persist flushes at commit.
     public void save(Student student) {
-        entityManager.persist(student);
+        entityManager.persist(student); // INSERT for a new entity; id is still 0 until flush.
     }
 
-    // Implement findById method
     @Override
     public Student findById(Integer id) {
-        return entityManager.find(Student.class, id);
+        return entityManager.find(Student.class, id); // null if no row — callers should null-check.
     }
 
-    // Implement findAll method
     @Override
     public List<Student> findAll() {
-        // Create query
+        // JPQL entity name is Student (class), not student (table).
         TypedQuery<Student> query = entityManager.createQuery("FROM Student order by lastName asc", Student.class);
 
-        // Return query results
         return query.getResultList();
     }
 
-    // Implement findByLastName method
     @Override
     public List<Student> findByLastName(String lastName) {
-        // Create query
         TypedQuery<Student> query = entityManager.createQuery(
                 "FROM Student WHERE lastName=:theData",
                 Student.class);
 
-        // Set query parameters
-        query.setParameter("theData", lastName);
+        query.setParameter("theData", lastName); // Named params — safer than string concatenation.
 
-        // Return query results
         return query.getResultList();
     }
 
-    // Implement update method
     @Override
     @Transactional
     public void update(Student student) {
-        entityManager.merge(student);
+        entityManager.merge(student); // Syncs changes to the database (UPDATE for existing rows).
     }
 
-    // Implement delete method
     @Override
     @Transactional
     public void delete(Integer id) {
-        // Retrieve student entity
         Student student = entityManager.find(Student.class, id);
 
-        // Delete student entity
+        // remove() requires a managed entity — load first, then delete.
         if (student != null) {
             entityManager.remove(student);
         } else {
@@ -83,10 +72,10 @@ public class StudentDAOImpl implements StudentDAO {
         }
     }
 
-    // Implemente deleteAll method
     @Override
     @Transactional
     public int deleteAll() {
+        // Bulk JPQL DELETE — bypasses per-entity remove(); returns affected row count.
         int rowsDeleted = entityManager.createQuery("DELETE from Student").executeUpdate();
         return rowsDeleted;
     }

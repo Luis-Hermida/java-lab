@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lab.crud.demo.entity.Student;
 
+// Persistence contract — implementation uses EntityManager; could later sit behind a REST controller.
 public interface StudentDAO {
     void save(Student student);
 
