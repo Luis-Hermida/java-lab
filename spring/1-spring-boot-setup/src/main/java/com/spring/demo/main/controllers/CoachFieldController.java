@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.demo.coach.Coach;
 
+// Field injection demo — Spring sets the field directly. Harder to test and easy to hide required dependencies.
 @RestController
 public class CoachFieldController {
 
-    // define a private field for the dependency
-    // field injection is not recommended, but it is still possible
+    // @Qualifier picks cricketCoach when many Coach beans exist — field @Autowired is discouraged in production code.
     @Autowired
     @Qualifier("cricketCoach")
     private Coach controlledCoach;

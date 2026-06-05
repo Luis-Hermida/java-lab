@@ -7,21 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.demo.coach.Coach;
 
+// Singleton scope demo — default for @Component beans unless @Scope says otherwise.
 @RestController
 public class CoachConstructorSingletonTest {
 
-    // define a private field for the dependency
     private Coach controlledCoach;
     private Coach anotherCoach;
 
-    /*
-     * Define a constructor for dependency injection
-     * using the same bean for both parameters, which is CricketCoach because of
-     * 
-     * @Qualifier
-     * this will test if the same instance is injected for both parameters, which is
-     * the case for singleton beans
-     */
+    // Same @Qualifier twice: Spring reuses the one cricketCoach instance (controlledCoach == anotherCoach → true).
     @Autowired
     public CoachConstructorSingletonTest(
             @Qualifier("cricketCoach") Coach coach,
@@ -32,6 +25,6 @@ public class CoachConstructorSingletonTest {
 
     @GetMapping("/testSingleton")
     public String check() {
-        return "Are the two coaches the same? " + (controlledCoach == anotherCoach); // return true for singleton beans
+        return "Are the two coaches the same? " + (controlledCoach == anotherCoach);
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Lazy
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // New instance per injection point — hit GET /testPrototype to compare references.
 public class GolfCoach implements Coach {
 
     public GolfCoach() {

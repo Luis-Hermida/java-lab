@@ -7,15 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.demo.coach.Coach;
 
+// Constructor injection (recommended) — dependencies are required, explicit, and the fields can stay final in real code.
 @RestController
 public class CoachContructorController {
 
-    // define a private field for the dependency
     private Coach controlledCoach;
     private Coach anotherCoach;
 
-    // define a constructor for dependency injection
-    // using default Coach bean, which is FootBallCoach because of @Primary
+    // First Coach param resolves to @Primary FootBallCoach; swimCoach comes from CoachConfig @Bean.
     @Autowired
     public CoachContructorController(Coach coach,
             @Qualifier("swimCoach") Coach anotherCoach) {

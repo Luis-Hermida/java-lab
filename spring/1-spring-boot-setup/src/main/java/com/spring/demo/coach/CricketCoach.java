@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy
+@Lazy // Bean is not created until first needed — with spring.main.lazy-initialization=true, watch when the constructor logs.
 public class CricketCoach implements Coach {
 
     public CricketCoach() {

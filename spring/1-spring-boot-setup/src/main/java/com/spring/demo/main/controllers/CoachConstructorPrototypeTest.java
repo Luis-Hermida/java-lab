@@ -7,21 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.demo.coach.Coach;
 
+// Prototype scope demo — GolfCoach creates a new object for each injection point in this constructor.
 @RestController
 public class CoachConstructorPrototypeTest {
 
-    // define a private field for the dependency
     private Coach controlledCoach;
     private Coach anotherCoach;
 
-    /*
-     * Define a constructor for dependency injection
-     * using the same bean for both parameters, which is GolfCoach because of
-     * 
-     * @Qualifier
-     * this will test if the same instance is injected for both parameters, which is
-     * the case for prototype beans
-     */
+    // Same @Qualifier twice, but prototype scope: two separate instances (== false). Compare with CoachConstructorSingletonTest.
     @Autowired
     public CoachConstructorPrototypeTest(
             @Qualifier("golfCoach") Coach coach,
@@ -32,6 +25,6 @@ public class CoachConstructorPrototypeTest {
 
     @GetMapping("/testPrototype")
     public String check() {
-        return "Are the two coaches the same? " + (controlledCoach == anotherCoach); // return false for prototype beans
+        return "Are the two coaches the same? " + (controlledCoach == anotherCoach);
     }
 }

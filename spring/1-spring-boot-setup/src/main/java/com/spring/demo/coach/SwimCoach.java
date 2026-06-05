@@ -1,5 +1,6 @@
 package com.spring.demo.coach;
 
+// No @Component — Spring only knows this class because CoachConfig declares a @Bean swimCoach().
 public class SwimCoach implements Coach {
 
     public SwimCoach() {
