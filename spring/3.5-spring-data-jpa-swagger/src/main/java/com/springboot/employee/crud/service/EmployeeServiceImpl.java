@@ -10,6 +10,7 @@ import com.springboot.employee.crud.entity.Employee;
 
 import jakarta.transaction.Transactional;
 
+// Same service as 3.3 — REST endpoints documented by springdoc at /api/swagger-ui.html.
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 

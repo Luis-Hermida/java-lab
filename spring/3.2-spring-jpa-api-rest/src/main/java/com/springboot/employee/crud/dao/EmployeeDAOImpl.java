@@ -10,6 +10,7 @@ import com.springboot.employee.crud.entity.Employee;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
+// Manual JPA DAO — same pattern as module 2 student DAO, applied to Employee.
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
 
@@ -31,20 +32,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee findById(int Id) {
-        Employee employee = entityManager.find(Employee.class, Id);
-        return employee;
+        return entityManager.find(Employee.class, Id);
     }
 
     @Override
     public Employee save(Employee employee) {
-        Employee dbEmployee = entityManager.merge(employee);
-        return dbEmployee;
+        return entityManager.merge(employee); // merge handles both new and existing rows.
     }
 
     @Override
     public void deleteById(int Id) {
         Employee employee = entityManager.find(Employee.class, Id);
-        entityManager.remove(employee);
+        entityManager.remove(employee); // NPE if id missing — see api_specification.md caveat.
     }
 
 }

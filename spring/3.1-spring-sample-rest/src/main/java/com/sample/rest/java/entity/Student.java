@@ -1,5 +1,6 @@
 package com.sample.rest.java.entity;
 
+// Simple POJO — Jackson serializes getters to JSON in REST responses (no JPA).
 public class Student {
 
     private String firstName;

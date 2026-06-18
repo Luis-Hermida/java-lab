@@ -10,6 +10,7 @@ import com.springboot.employee.crud.entity.Employee;
 
 import jakarta.transaction.Transactional;
 
+// Service layer — delegates to Spring Data JpaRepository instead of manual DAO (contrast module 3.2).
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -42,7 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public Employee save(Employee employee) {
-        return employeeRepository.save(employee);
+        return employeeRepository.save(employee); // Spring Data implements persist/merge for you.
     }
 
     @Transactional

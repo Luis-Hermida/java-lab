@@ -12,11 +12,13 @@ import com.sample.rest.java.entity.Student;
 
 import jakarta.annotation.PostConstruct;
 
+// In-memory student API — no database; data lives in a List seeded at startup.
 @RestController
 @RequestMapping("/api")
 public class StudentRestController {
     private List<Student> theStudents;
 
+    // Runs after dependency injection — fills theStudents before any HTTP request.
     @PostConstruct
     public void loadData() {
         theStudents = new ArrayList<>();
@@ -32,13 +34,14 @@ public class StudentRestController {
 
     @GetMapping("/students/{studentId}")
     public Student getStudent(@PathVariable int studentId) {
+        // studentId is a list index (0, 1, 2), not a database primary key — see api_specification.md.
         if ((studentId >= theStudents.size()) || (studentId < 0)) {
             throw new StudentNotFoundException("Student id not found - " + studentId);
         }
         return theStudents.get(studentId);
     }
 
-    // @ExceptionHandler
+    // Per-controller @ExceptionHandler alternative — commented out; global handler in StudentRestExceptionHandler.
     // public ResponseEntity<StudentErrorResponse>
     // handleException(StudentNotFoundException exc) {
     // StudentErrorResponse error = new StudentErrorResponse();

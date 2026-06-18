@@ -9,6 +9,7 @@ import com.springboot.employee.crud.entity.Employee;
 
 import jakarta.transaction.Transactional;
 
+// Service layer — delegates to manual EmployeeDAO (EntityManager), not JpaRepository.
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -31,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public Employee save(Employee employee) {
-        return employeeDAO.save(employee);
+        return employeeDAO.save(employee); // DAO uses merge — INSERT or UPDATE depending on id.
     }
 
     @Transactional

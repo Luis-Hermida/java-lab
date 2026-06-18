@@ -1,5 +1,6 @@
 package com.sample.rest.java.rest;
 
+// JSON error body returned by StudentRestExceptionHandler — status, message, timeStamp.
 public class StudentErrorResponse {
     private int status;
     private String message;

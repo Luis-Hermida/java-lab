@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// JPA entity — exposed as /api/members resources (not /api/employees) via @RepositoryRestResource.
 @Entity
 @Table(name = "employee")
 public class Employee {

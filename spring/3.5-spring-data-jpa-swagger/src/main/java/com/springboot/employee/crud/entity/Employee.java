@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// JPA entity mapped to employee table — appears in Swagger schema for /api/employees endpoints.
 @Entity
 @Table(name = "employee")
 public class Employee {

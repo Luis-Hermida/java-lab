@@ -19,6 +19,7 @@ import com.springboot.employee.crud.service.EmployeeService;
 
 import tools.jackson.databind.json.JsonMapper;
 
+// Same REST as 3.3 + springdoc Swagger UI at /api/swagger-ui.html — see api_specification.md.
 @RestController
 @RequestMapping("/api")
 public class EmployeeControler {
@@ -50,7 +51,7 @@ public class EmployeeControler {
 
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee employee) {
-        employee.setId(0);
+        employee.setId(0); // Force INSERT — let MySQL assign identity id.
 
         Employee dbEmployee = employeeService.save(employee);
 

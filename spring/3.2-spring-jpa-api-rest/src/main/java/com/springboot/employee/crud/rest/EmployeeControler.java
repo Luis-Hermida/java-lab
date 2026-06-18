@@ -19,6 +19,7 @@ import com.springboot.employee.crud.service.EmployeeService;
 
 import tools.jackson.databind.json.JsonMapper;
 
+// Employee CRUD REST API — persistence via manual DAO + EntityManager (module 3.2). See api_specification.md.
 @RestController
 @RequestMapping("/api")
 public class EmployeeControler {
@@ -50,7 +51,7 @@ public class EmployeeControler {
 
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee employee) {
-        employee.setId(0);
+        employee.setId(0); // Force INSERT — let MySQL assign identity id.
 
         Employee dbEmployee = employeeService.save(employee);
 
@@ -76,6 +77,7 @@ public class EmployeeControler {
             throw new RuntimeException("Employee id not allowed in request body - " + employeeId);
         }
 
+        // Merge JSON patch into loaded entity — only supplied fields change.
         Employee patchedEmployee = jsonMapper.updateValue(tempEmployee, patchPayload);
 
         Employee dbEmployee = employeeService.save(patchedEmployee);
