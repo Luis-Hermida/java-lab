@@ -7,10 +7,28 @@
 </head>
 
 <body>
-    <form th:action="@{/processFormThree}" method="GET">
-        <input type="text" name="studentName" placeholder="Type your name" />
-        <input type="submit">
-    </form>
+    <div>
+        <p>/processForm</p>
+        <form th:action="@{/processForm}" method="GET">
+            <input type="text" name="studentName" placeholder="Type your name" />
+            <input type="submit">
+        </form>
+    </div>
+    <div>
+        <p>/processFormTwo</p>
+        <form th:action="@{/processFormTwo}" method="GET">
+            <input type="text" name="studentName" placeholder="Type your name" />
+            <input type="submit">
+        </form>
+    </div>
+
+    <div>
+        <p>/processFormThree</p>
+        <form th:action="@{/processFormThree}" method="POST">
+            <input type="text" name="studentName" placeholder="Type your name" />
+            <input type="submit">
+        </form>
+    </div>
 </body>
 
 </html>

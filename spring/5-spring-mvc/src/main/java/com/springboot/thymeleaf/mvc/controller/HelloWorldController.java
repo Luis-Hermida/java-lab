@@ -2,6 +2,8 @@ package com.springboot.thymeleaf.mvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -10,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class HelloWorldController {
     // Controller method to show initial form
-    @RequestMapping("/helloForm")
+    @GetMapping("/helloForm")
     public String showForm() {
         return "helloworld-form";
     }
@@ -40,7 +42,7 @@ public class HelloWorldController {
     }
 
     // Controller method that uses request params
-    @RequestMapping("/processFormThree")
+    @PostMapping("/processFormThree")
     public String processFormThree(@RequestParam("studentName") String name, Model model) {
         // convert data
         name = name.toUpperCase();
